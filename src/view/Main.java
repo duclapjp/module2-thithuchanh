@@ -41,6 +41,7 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("Nhập vào số điện thoại cần sửa");
+                    scanner.nextLine();
                     String phoneNumber = scanner.nextLine();
                     int index = duclap.getIndexByPhoneNumber(phoneNumber);
                     if (index != -1) {
