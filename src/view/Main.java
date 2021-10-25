@@ -5,18 +5,16 @@ import model.PhoneBook;
 import storage.FilePhoneBook;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    private static FilePhoneBook filePhoneBook = FilePhoneBook.getInstance();
-    private static PhoneBookManager duclap = new PhoneBookManager(filePhoneBook);
+    private static final FilePhoneBook filePhoneBook = FilePhoneBook.getInstance();
+    private static final PhoneBookManager duclap = new PhoneBookManager(filePhoneBook);
+
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
-        List<PhoneBook> phoneBookList = new ArrayList<>();
-        phoneBookList = filePhoneBook.readFile();
-        duclap.setPhoneBookList(phoneBookList);
+        List<PhoneBook> phoneBookList = getPhoneBooks();
 
         boolean check = true;
         while (check) {
@@ -73,7 +71,7 @@ public class Main {
                     break;
                 case 6:
                     System.out.println("Đọc file thành công");
-                    List<PhoneBook> newPhoneBookList = filePhoneBook.readFile();
+                    getPhoneBooks();
                     break;
                 case 7:
                     System.out.println("Ghi file thành công");
@@ -84,6 +82,13 @@ public class Main {
                     break;
             }
         }
+    }
+
+    private static List<PhoneBook> getPhoneBooks() {
+        List<PhoneBook> phoneBookList;
+        phoneBookList = filePhoneBook.readFile();
+        duclap.setPhoneBookList(phoneBookList);
+        return phoneBookList;
     }
 
     public static PhoneBook creatPhoneBook() {

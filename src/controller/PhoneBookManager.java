@@ -73,9 +73,9 @@ public class PhoneBookManager {
         return -1;
     }
     public void seachByPhoneNumber(){
-        for (int i = 0; i < phoneBookList.size(); i++) {
-            if (phoneBookList.get(i).getPhoneNumber().contains(getPhoneNumber())){
-                System.out.println(phoneBookList.get(i).toString());
+        for (PhoneBook p :phoneBookList) {
+            if (p.getPhoneNumber().contains(getPhoneNumber())){
+                System.out.println(p.toString());
             }
         }
     }
