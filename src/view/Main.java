@@ -38,33 +38,10 @@ public class Main {
                     duclap.display();
                     break;
                 case 3:
-                    System.out.println("Nhập vào số điện thoại cần sửa");
-                    scanner.nextLine();
-                    String phoneNumber = scanner.nextLine();
-                    int index = duclap.getIndexByPhoneNumber(phoneNumber);
-                    if (index != -1) {
-                        duclap.edit(index, creatPhoneBook());
-                    } else {
-                        System.out.println("Không tìm được danh bạ với số điện thoại trên");
-                    }
+                    editPhoneBookByPhoneNumber(scanner);
                     break;
                 case 4:
-                    System.out.println("Nhập vào số điện thoại muốn xóa");
-                    scanner.nextLine();
-                    String p = scanner.nextLine();
-                    int i = duclap.getIndexByPhoneNumber(p);
-                    if (i != -1) {
-                        System.out.println("Đồng ý muốn xóa không");
-                        System.out.println("Đồng ý bấm 'Y'");
-                        String c = scanner.nextLine();
-                        if (c.equals("Y")) {
-                            duclap.delete(i);
-                        } else {
-                            break;
-                        }
-                    } else {
-                        System.out.println("Không tìm được danh bạ với số điện thoại trên");
-                    }
+                    deletePhoneBookByPhoneNumber(scanner);
                     break;
                 case 5:
                     duclap.seachByPhoneNumber();
@@ -81,6 +58,37 @@ public class Main {
                     check = false;
                     break;
             }
+        }
+    }
+
+    private static void editPhoneBookByPhoneNumber(Scanner scanner) throws IOException {
+        System.out.println("Nhập vào số điện thoại cần sửa");
+        scanner.nextLine();
+        String phoneNumber = scanner.nextLine();
+        int index = duclap.getIndexByPhoneNumber(phoneNumber);
+        if (index != -1) {
+            duclap.edit(index, creatPhoneBook());
+        } else {
+            System.out.println("Không tìm được danh bạ với số điện thoại trên");
+        }
+    }
+
+    private static void deletePhoneBookByPhoneNumber(Scanner scanner) throws IOException {
+        System.out.println("Nhập vào số điện thoại muốn xóa");
+        scanner.nextLine();
+        String p = scanner.nextLine();
+        int i = duclap.getIndexByPhoneNumber(p);
+        if (i != -1) {
+            System.out.println("Đồng ý muốn xóa không");
+            System.out.println("Đồng ý bấm 'Y'");
+            String c = scanner.nextLine();
+            if (c.equals("Y")) {
+                duclap.delete(i);
+            } else {
+                return;
+            }
+        } else {
+            System.out.println("Không tìm được danh bạ với số điện thoại trên");
         }
     }
 
